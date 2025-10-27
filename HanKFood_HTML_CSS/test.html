@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ví dụ innerHTML</title>
+    <style>
+        #target-div {
+            border: 2px solid #3498db;
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #ecf0f1;
+        }
+        .btn-action {
+            padding: 10px 20px;
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Thử nghiệm thuộc tính innerHTML</h1>
+
+    <div id="target-div">
+        <p><b>Đây là nội dung BAN ĐẦU.</b></p>
+        <p>Nội dung này sẽ bị thay thế hoàn toàn khi bạn nhấn nút.</p>
+    </div>
+
+    <button class="btn-action" onclick="changeContent()">
+        Nhấn vào đây để thay đổi nội dung!
+    </button>
+
+    <script>
+        function changeContent() {
+            // Lấy ra phần tử có ID là 'target-div'
+            const targetDiv = document.getElementById('target-div');
+
+            // Định nghĩa nội dung HTML MỚI (bao gồm cả thẻ h2 và button)
+            const newHTML = `
+                <h2 style="color: #c0392b;">NỘI DUNG ĐÃ BỊ THAY THẾ!</h2>
+                <p>Nội dung này được chèn bằng <b>innerHTML</b>.</p>
+                <p>Nó có thể chứa bất kỳ thẻ HTML nào, ví dụ: <button>Một nút khác</button></p>
+            `;
+
+            // Gán chuỗi HTML mới vào thuộc tính innerHTML
+            targetDiv.innerHTML = newHTML;
+        }
+    </script>
+
+</body>
+</html>

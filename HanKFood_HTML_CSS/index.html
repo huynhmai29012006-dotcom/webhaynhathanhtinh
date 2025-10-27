@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>K-Eatery </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+   
+    <header class="main-header">
+        <div class="container">
+            <div class="header-top">
+                <a href="index.html" class="logo"><p>K EATERY</p></a>
+                <a href="index.html" ><img src="images/logo_keat.jpg" width=150px> </img></a>
+                
+                <form class="search-bar">
+                    <input type="text" placeholder="Tìm món ăn, combo...">
+                    <button type="submit">🔍</button>
+                </form>
+
+                <div class="header-actions">
+                    <a href="#" aria-label="Giỏ hàng">🛒</a>
+                    <a href="signin.html" aria-label="Tài khoản" >👤</a>
+
+                    <a href="#" aria-label="Ngôn ngữ">🌐</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html" >TRANG CHỦ</a></li>
+                <li onclick=ShowCategory()><a>MÌ CAY</a></li> 
+                <li onclick=ShowCategory()><a>Mì & CƠM TRỘN</a></li>
+                <li onclick=ShowCategory()><a>TOKBOKKI & MÓN NHẸ</a></li>
+                <li onclick=ShowCategory()><a>THỨC UỐNG</a></li>
+                <li onclick=ShowCategory()><a>KHUYẾN MÃI</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>ĐẮM CHÌM TRONG HƯƠNG VỊ CAY NỒNG<br>CHUẨN HÀN!</h1>
+                <a href="#" class="btn btn-primary">ĐẶT HÀNG NGAY</a>
+            </div>
+        </section>
+
+        <div class="content-wrapper">
+            <section class="quick-categories container">
+                <a href="micay.html" class="category-item">
+                    <img src="/images/micay.jpg" alt="Mì Cay">
+                    <h4>MÌ CAY</h4>
+                </a>
+                 <a href="kimbap.html" class="category-item">
+                    <img src="/images/Kimbap.jpg" alt="Cơm Cuộn">
+                    <h4>KIMBAP</h4>
+                </a>
+                 <a href="tokbokki.html" class="category-item">
+                    <img src="/images/tokbokki.jpg" alt="tokbokki">
+                    <h4>TOKBOKKI</h4>
+                </a>
+            </section>
+        </div>
+<!-- Auto insert product -->
+        <section class="menu-section">
+            <h2 class="section-title">KHÁM PHÁ THỰC ĐƠN CÙNG CHÚNG TÔI</h2>
+            <div class="product-grid" id="product-list"></div>
+        </section>
+<!--  -->
+        <div class="content-wrapper">
+            <section class="featured-products container">
+                <h2 class="section-title">DANH MỤC NỔI BẬT</h2>
+                <h3 class="section-subtitle"><a href="khuyenmai.html" style="color: var(--accent-color);">HOT DEAL HÔM NAY: MÌ CAY LEVEL X GIẢM GIÁ!</a></h3>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <a href="chitietsanpham.html"><img src="micay.jpg" alt="Mì cay kimchi"></a>
+                        <div class="product-card-content">
+                            <h4><a href="chitietsanpham.html"> Mì cay kimchi thập cẩm</a></h4>
+                            <div class="price">
+                                <span class="new-price">79.00 VNĐ</span>
+                                <span class="old-price">110.00 VNĐ</span>
+                            </div>
+                            <button class="btn btn-secondary">THÊM VÀO GIỎ</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <a href="chitietsanpham.html"><img src="kimbaptomchienxu.jpg"alt="Kimbap tôm chiên xù"></a>
+                            <h4><a href="chitietsanpham.html">Kimbap tôm chiên xù </a></h4>
+                            <div class="price">
+                                <span class="new-price">69.00 VNĐ</span>
+                                <span class="old-price">90.00 VNĐ</span>
+                            </div>
+                            <button class="btn btn-secondary">THÊM VÀO GIỎ</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <a href="chitietsanpham.html"><img src="tokphomai.jpg" alt="Mì cay kimchi"></a>
+                        <div class="product-card-content">
+                            <h4><a href="chitietsanpham.html">Tokbokki phô mai</a></h4>
+                            <div class="price">
+                                <span class="new-price">109.00 VNĐ</span>
+                                <span class="old-price">130.00 VNĐ</span>
+                            </div>
+                            <button class="btn btn-secondary">THÊM VÀO GIỎ</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>K-EATERY</h4>
+                    <p>Chuyên mỳ cay 7 cấp độ, lẩu to combo, đồ ăn vặt chuẩn Hàn.</p>
+                    <p>Địa chỉ: 123 Đường ABC, Quận XYZ, TP.HCM</p>
+                    <p>Điện thoại: 0234 567 890</p>
+                </div>
+                <div class="footer-col">
+                    <h4>DANH MỤC CHÍNH</h4>
+                    <ul>
+                        <li><a href="micay.html">Mì Cay</a></li>
+                        <li><a href="kimbap.html">Kimbap & Cơm Trộn</a></li>
+                        <li><a href="tokbokki.html">Tokbokki & Món Nhẹ</a></li>
+                        <li><a href="khuyenmai.html">Khuyến Mãi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>HỖ TRỢ KHÁCH HÀNG</h4>
+                    <ul>
+                        <li><a href="#">Điều khoản dịch vụ</a></li>
+                        <li><a href="#">Chính sách giao hàng</a></li>
+                        <li><a href="#">Chính sách bảo mật</a></li>
+                        <li><a href="#">Câu hỏi thường gặp</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ĐĂNG KÝ NHẬN TIN</h4>
+                    <p>Nhập email để nhận ngay các thông tin khuyến mãi mới nhất.</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email của bạn">
+                        <button type="submit" class="btn btn-primary">GỬI</button>
+                    </form>
+                    <div class="social-icons">
+                        <span>FB</span> <span>IG</span> <span>TK</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; 2025 K-Eatery. All rights reserved.</p>
+                <div class="payment-icons">
+                    <img src="/images/visa.png" alt="Visa">
+                    <img src="./images/mastercard.png" alt="Mastercard">
+                    <img src="./images/zalopay.png" alt="ZaloPay">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script src="initilization.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
