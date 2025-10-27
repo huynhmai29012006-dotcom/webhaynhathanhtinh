@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chi tiết - Mì Cay Kimchi</title>
+   <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header class="main-header">
+        <div class="container">
+            <div class="header-top">
+                <a href="index.html" class="logo">
+                    <img src="k-eatery-logo.png" alt="K-EATERY Logo" style="height: 60px;">
+                </a>
+                <form class="search-bar">
+                    <input type="text" placeholder="Tìm món ăn, combo...">
+                    <button type="submit">🔍</button>
+                </form>
+                <div class="header-actions">
+                    <a href="#" aria-label="Giỏ hàng">🛒</a>
+                    <a href="#" aria-label="Tài khoản">👤</a>
+                    <a href="#" aria-label="Ngôn ngữ">🌐</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <nav class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="index.html">TRANG CHỦ</a></li>
+                <li><a href="micay.html" class="active">MÌ CAY</a></li> 
+                <li><a href="kimbap.html">KIMBAP & CƠM TRỘN</a></li>
+                <li><a href="tokbokki.html">TOKBOKKI & MÓN NHẸ</a></li>
+                <li><a href="khuyenmai.html">KHUYẾN MÃI</a></li>
+                
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <div class="content-wrapper">
+            <section class="product-detail container">
+                <div class="product-detail-layout">
+                    <div class="product-detail-image">
+                        <img src="https://via.placeholder.com/500x375.png?text=Mi+Cay+Kimchi" alt="Mì cay kimchi thập cẩm">
+                    </div>
+
+                    <div class="product-detail-info">
+                        <h1>Mì cay kimchi thập cẩm Level 5</h1>
+                        <div class="price">
+                            <span class="new-price">89.00 VNĐ</span>
+                            <span class="old-price">110.00 VNĐ</span>
+                        </div>
+                        <p class="description">
+                            Một tô mì cay thập cẩm đầy đặn với tôm, mực, bò, xúc xích và kim chi,
+                            hòa quyện trong nước dùng cay nồng cấp độ 5. Thách thức mọi tín đồ ăn cay!
+                        </p>
+
+                        <div class="product-options">
+                            <div class="option-group">
+                                <label for="level">Chọn level cay (Theo yêu cầu của bạn):</label>
+                                <select name="level" id="level">
+                                    <option value="1">Level 1</option>
+                                    <option value="2">Level 2</option>
+                                    <option value="3">Level 3</option>
+                                    <option value="4">Level 4</option>
+                                    <option value="5" selected>Level 5</option>
+                                    <option value="6">Level 6</option>
+                                    <option value="7">Level 7</option>
+                                </select>
+                            </div>
+                            <div class="option-group">
+                                <label for="quantity">Số lượng:</label>
+                                <input type="number" id="quantity" name="quantity" value="1" min="1" style="width: 60px; padding: 5px;">
+                            </div>
+                        </div>
+
+                        <button class="btn btn-primary">THÊM VÀO GIỎ HÀNG</button>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+         <div class="content-wrapper">
+            <section class="related-products container">
+                <h2 class="section-title">CÓ THỂ BẠN SẼ THÍCH</h2>
+                
+                <div class="product-grid">
+                    <div class="product-card">
+                        <a href="chitietsanpham.html"><img src="https://via.placeholder.com/300x225.png?text=Bot+Chien" alt="Bột chiên"></a>
+                        <div class="product-card-content">
+                            <h4><a href="chitietsanpham.html">Bột chiên (1 suất)</a></h4>
+                            <div class="price">
+                                <span class="current-price">49.000 đ</span>
+                            </div>
+                            <button class="btn btn-primary">ĐẶT MÓN</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <a href="chitietsanpham.html"><img src="https://via.placeholder.com/300x225.png?text=Pha+Lau" alt="Phá lấu"></a>
+                        <div class="product-card-content">
+                            <h4><a href="chitietsanpham.html">Phá lấu (1 suất)</a></h4>
+                            <div class="price">
+                                <span class="current-price">99.000 đ</span>
+                            </div>
+                            <button class="btn btn-primary">ĐẶT MÓN</button>
+                        </div>
+                    </div>
+                    <div class="product-card">
+                        <a href="chitietsanpham.html"><img src="https://via.placeholder.com/300x225.png?text=Kimbap+Chien" alt="Kimbap chiên"></a>
+                        <div class="product-card-content">
+                            <h4><a href="chitietsanpham.html">Kimbap chiên xù</a></h4>
+                            <div class="price">
+                                <span class="current-price">50.000 đ</span>
+                            </div>
+                            <button class="btn btn-primary">ĐẶT MÓN</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>K-EATERY</h4>
+                    <p>Chuyên mỳ cay 7 cấp độ, lẩu to combo, đồ ăn vặt chuẩn Hàn.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>DANH MỤC CHÍNH</h4>
+                    <ul>
+                        <li><a href="micay.html">Mì Cay</a></li>
+                        <li><a href="kimbap.html">Kimbap & Cơm Trộn</a></li>
+                        <li><a href="tokbokki.html">Tokbokki & Món Nhẹ</a></li>
+                        <li><a href="khuyenmai.html">Khuyến Mãi</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>HỖ TRỢ KHÁCH HÀNG</h4>
+                    <ul>
+                        <li><a href="#">Điều khoản dịch vụ</a></li>
+                        <li><a href="#">Chính sách giao hàng</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>ĐĂNG KÝ NHẬN TIN</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Email của bạn">
+                        <button type="submit" class="btn btn-primary">GỬI</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 K-Eatery. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
