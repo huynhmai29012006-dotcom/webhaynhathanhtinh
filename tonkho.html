@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Quản lý Tồn kho | K–EATERY</title>
+        <link rel="stylesheet" href="assets/css/admin.css">
+        <link rel="stylesheet"href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+
+    <body>
+        <div class="sidebar">
+            <h2>K–EATERY</h2>
+            <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Tổng quan</a>
+            <a href="products.html"><i class="fa-solid fa-bowl-rice"></i> Sản phẩm</a>
+            <a href="orders.html"><i class="fa-solid fa-receipt"></i> Đơn hàng</a>
+            <a href="users.html"><i class="fa-solid fa-users"></i> Khách hàng</a>
+           
+            <a href="import.html"><i class="fa-solid fa-boxes-stacked"></i> Nhập hàng</a>
+            <a href="prices.html"><i class="fa-solid fa-hand-holding-dollar"></i> Giá bán</a>
+            <a href="tonkho.html" class="active"><i class="fa-solid fa-warehouse"></i> Tồn kho</a>
+            <a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <span class="menu-toggle"><i class="fa-solid fa-bars"></i></span>
+                <h1>Quản lý Tồn kho</h1>
+            </div>
+
+            <div class="admin-control">
+                <div class="admin-control-left">
+                    <select name="loai-san-pham" id="loai-san-pham" onchange="filterInventory()">
+                        <option value="all">Tất cả Loại</option>
+                        <option value="mi-kimchi">Mì kimchi</option>
+                        <option value="mi-lau-thai">Mì lẩu thái</option>
+                        <option value="tron">Trộn</option>
+                        <option value="snack">Snack</option>
+                        <option value="nuoc">Nước</option>
+                    </select>
+                </div>
+                <div class="admin-control-center">
+                    <div class="form-search">
+                        <span class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input id="form-search-inventory" type="text" class="form-search-input" placeholder="Tìm kiếm tên món, mã hàng..." oninput="filterInventory()">
+                    </div>
+                </div>
+                <div class="admin-control-right">
+                    <div class="fillter-date">
+                        <div>
+                            <label for="inventory-date">Tra cứu tại</label>
+                            <input type="date" class="form-control-date" id="inventory-date">
+                        </div>
+                    </div>
+                    <button class="btn-control-large" style="background-color: var(--secondary);" onclick="calculateAndRenderInventory()">
+                        <i class="fa-solid fa-rotate"></i> Tra cứu
+                    </button>
+                    <button class="btn-reset-order" onclick="resetInventoryFilters()">
+                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="order-stat" id="inventory-stat">
+                <div class="order-stat-item">
+                    <div class="order-stat-item-content">
+                        <p class="order-stat-item-content-desc">Tổng Giá trị Tồn kho</p>
+                        <h4 class="order-stat-item-content-h" id="totalInventoryValue">0 VNĐ</h4>
+                    </div>
+                    <div class="order-stat-item-icon">
+                        <i class="fa-solid fa-coins"></i>
+                    </div>
+                </div>
+                <div class="order-stat-item">
+                    <div class="order-stat-item-content">
+                        <p class="order-stat-item-content-desc">Tổng Số lượng Tồn kho</p>
+                        <h4 class="order-stat-item-content-h" id="totalInventoryUnits">0 đơn vị</h4>
+                    </div>
+                    <div class="order-stat-item-icon">
+                        <i class="fa-solid fa-boxes-stacked"></i>
+                    </div>
+                </div>
+                <div class="order-stat-item inventory-alert-card">
+                    <div class="order-stat-item-content">
+                        <p class="order-stat-item-content-desc">Cảnh báo Hết hàng</p>
+                        <h4 class="order-stat-item-content-h danger-text" id="alertCount">0 món</h4>
+                    </div>
+                    <div class="order-stat-item-icon">
+                        <i class="fa-solid fa-triangle-exclamation" style="color: var(--accent);"></i>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Chi tiết Nhập - Xuất - Tồn theo món</h3>
+                <div class="admin-control" style="justify-content: flex-start; margin-top: 15px;">
+                    <select name="mon-an-chi-tiet" id="mon-an-chi-tiet" style="width: 250px;" onchange="renderDetailedInventoryReport()">
+                        <option value="">Chọn món ăn để xem chi tiết</option>
+                        </select>
+                    <div class="fillter-date">
+                        <div>
+                            <label for="time-start-detail">Từ</label>
+                            <input type="date" class="form-control-date" id="time-start-detail">
+                        </div>
+                        <div>
+                            <label for="time-end-detail">Đến</label>
+                            <input type="date" class="form-control-date" id="time-end-detail">
+                        </div>
+                    </div>
+                    <button class="btn" style="background-color: var(--secondary);" id="btn-view-report" onclick="renderDetailedInventoryReport()">
+                        Xem Báo Cáo
+                    </button>
+                </div>
+
+                <div class="table-responsive">
+                    <table class="table-inventory-detail" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Tên món</th>
+                                <th style="text-align: center;">Tồn đầu kỳ</th>
+                                <th class="positive-text" style="text-align: center;">Tổng Nhập</th>
+                                <th class="danger-text" style="text-align: center;">Tổng Xuất</th>
+                                <th style="text-align: center;">Tồn cuối kỳ</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-detail-body">
+                            <tr><td colspan="5" style="text-align: center; color: #b0b0b0;">Vui lòng chọn món ăn để xem chi tiết</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="card">
+                <h3>Tổng quan Tồn kho hiện tại</h3>
+                 <div class="table-responsive">
+                    <table class="table-inventory" width="100%">
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Tên món</th>
+                                <th>Loại</th>
+                                <th>Đơn vị</th>
+                                <th>Số lượng Tồn</th>
+                                <th>Giá trị Tồn (VNĐ)</th>
+                                <th>Cảnh báo</th>
+                            </tr>
+                        </thead>
+                        <tbody id="inventory-list-body">
+                            </tbody>
+                    </table>
+                 </div>
+            </div>
+
+        </div>
+        <script src="assets/js/initilization.js"></script>
+        <script src="assets/js/admin.js"></script>
+    </body>
+</html>

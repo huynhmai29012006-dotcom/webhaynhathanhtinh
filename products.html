@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý sản phẩm</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="assets/css/products.css">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="sidebar">
+        <h2>K–EATERY</h2>
+        <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Tổng quan</a>
+        <a href="products.html" class="active"><i class="fa-solid fa-bowl-rice"></i> Sản phẩm</a>
+        <a href="orders.html"><i class="fa-solid fa-receipt"></i> Đơn hàng</a>
+        <a href="users.html"><i class="fa-solid fa-users"></i> Khách hàng</a>
+       
+        <a href="import.html"><i class="fa-solid fa-boxes-stacked"></i> Nhập hàng</a>
+        <a href="prices.html"><i class="fa-solid fa-hand-holding-dollar"></i> Giá bán</a>
+        <a href="tonkho.html"><i class="fa-solid fa-warehouse"></i> Tồn kho</a>
+        <a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <span class="menu-toggle"><i class="fa-solid fa-bars"></i></span>
+            <h1>Quản lý sản phẩm</h1>
+        </div>
+
+        <!-- THANH LỌC + TÌM KIẾM -->
+        <div class="product-filter-bar">
+           
+            <div class="filter-center">
+                <form action="" class="form-search">
+                    <span class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></span>
+                    <input type="text" class="form-search-input" placeholder="Tìm sản phẩm...">
+                </form>
+            </div>
+
+            <div class="filter-right">
+                <button class="btn btn-add-product"><i class="fa-solid fa-plus"></i> Thêm món mới</button>
+            </div>
+        </div>
+
+        <!-- danh muc san pham -->
+        <div class="product-list">
+            <!-- Mỗi sản phẩm là 1 khối -->
+            <div class="product-item">
+                <div class="product-image">
+                    <img src="images/products/Banh-Kimbap-chien.png" >
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name">Tên món</h3>
+                    <p class="product-desc">Mô tả món ăn ngắn gọn...</p>
+                    <p class="product-category"><strong>Loại:</strong> Mì Lẩu Thái</p>
+                </div>
+                <div class="product-actions">
+                    <button class="btn-edit"><i class="fa-solid fa-pen"></i> Sửa</button>
+                    <button class="btn-delete"><i class="fa-solid fa-trash"></i> Xóa</button>
+                </div>
+            </div>
+
+            <!-- Thêm nhiều sản phẩm bằng JS sau -->
+        </div>  
+    </div>
+     <!-- Modal Sửa Sản Phẩm -->
+<div id="editModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="document.getElementById('editModal').style.display='none'">&times;</span>
+    <h2>Sửa sản phẩm</h2>
+    <form id="editForm">
+      <div class="form-group">
+        <label for="edit-title">Tên món</label>
+        <input type="text" id="edit-title" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-desc">Mô tả</label>
+        <textarea id="edit-desc" rows="3" required></textarea>
+      </div>
+      <div class="form-group">
+        <label for="edit-price">Giá (VNĐ)</label>
+        <input type="number" id="edit-price" required>
+      </div>
+      <div class="form-group">
+        <label for="edit-category">Loại</label>
+        <select id="edit-category" required>
+          <option value="mi-lau-thai">Mì lẩu thái</option>
+          <option value="mi-kimchi">Mì kimchi</option>
+          <option value="tron">Trộn</option>
+          <option value="snack">Snack</option>
+          <option value="nuoc">Nước</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-save">Lưu thay đổi</button>
+    </form>
+  </div>
+</div>
+     <!-- Modal Thêm Sản Phẩm -->
+<!-- Modal Thêm Sản Phẩm -->
+ <!-- Modal Thêm Sản Phẩm -->
+<div id="addModal" class="modal">
+  <div class="modal-content modal-add-layout">
+    <span class="close-btn" onclick="document.getElementById('addModal').style.display='none'">&times;</span>
+    <h2>Thêm sản phẩm mới</h2>
+    <form id="addForm" class="add-form">
+      
+      <div class="form-left-image">
+        <label for="add-img">Thêm URL ảnh</label>
+        <div class="preview-img-large">
+          <img id="preview-add-img" src="./images/placeholder.png" alt="Xem trước ảnh">
+        </div>
+        <input type="text" id="add-img" placeholder="Nhập URL hình ảnh" required>
+      </div>
+      
+      <div class="form-right-info">
+        <div class="form-group">
+          <label for="add-title">Tên sản phẩm</label> 
+          <input type="text" id="add-title" required>
+        </div>
+        <div class="form-group">
+          <label for="add-desc">Mô tả</label>
+          <textarea id="add-desc" rows="5" required></textarea> 
+        </div>
+        <div class="form-group">
+          <label for="add-category">Loại</label>
+          <select id="add-category" required>
+            <option value="mi-lau-thai">Mì lẩu thái</option>
+            <option value="mi-kimchi">Mì kimchi</option>
+            <option value="tron">Trộn</option>
+            <option value="snack">Snack</option>
+            <option value="nuoc">Nước</option>
+          </select>
+        </div>
+        <div class="form-group" style="margin-top: 10px;">
+          <label for="add-price">Giá (VNĐ)</label>
+          <input type="number" id="add-price" required>
+        </div>
+        </div>
+      
+      <button type="submit" class="btn btn-save btn-submit-full">Thêm sản phẩm</button>
+      
+    </form>
+  </div>
+</div>
+
+<!--modal thêm sp -->
+
+
+  <script src="assets/js/initilization.js"></script>
+<script src="assets/js/admin.js"></script>
+
+</body>
+</html>

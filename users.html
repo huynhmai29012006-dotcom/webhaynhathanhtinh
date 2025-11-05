@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="vi">
+    <head>
+        <meta charset="UTF-8">
+        <title>Quản lý khách hàng | K–EATERY</title>
+
+        <link rel="stylesheet" href="assets/css/admin.css">
+
+        <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    </head>
+
+    <body>
+
+        <div class="sidebar">
+            <h2>K–EATERY</h2>
+            <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> Tổng quan</a>
+            <a href="products.html"><i class="fa-solid fa-bowl-rice"></i> Sản phẩm</a>
+            <a href="orders.html"><i class="fa-solid fa-receipt"></i> Đơn hàng</a>
+            <a href="users.html" class="active"><i class="fa-solid fa-users"></i> Khách hàng</a>
+            
+            <a href="import.html"><i class="fa-solid fa-boxes-stacked"></i> Nhập hàng</a>
+            <a href="prices.html"><i class="fa-solid fa-hand-holding-dollar"></i> Giá bán</a>
+             <a href="tonkho.html" class="active"><i class="fa-solid fa-warehouse"></i> Tồn kho</a>
+            <a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> Đăng xuất</a>
+        </div>
+
+        <div class="main-content">
+            <div class="header">
+                <span class="menu-toggle"><i class="fa-solid fa-bars"></i></span>
+                <h1>Quản lý khách hàng</h1>
+            </div>
+
+            <div class="admin-control">
+                <div class="admin-control-left">
+                    <select name="tinh-trang-user" id="tinh-trang-user" >
+                        <option value="2">Tất cả</option>
+                        <option value="1">Hoạt động</option>
+                        <option value="0">Bị khóa</option>
+                    </select>
+                </div>
+
+                <div class="admin-control-center">
+                    <form action="" class="form-search">
+                        <span class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input id="form-search-user" type="text" class="form-search-input"placeholder="Tìm kiếm khách hàng..." >
+                    </form>
+                </div>
+
+                <div class="admin-control-right">
+                    <form action="" class="fillter-date">
+                        <div>
+                            <label for="time-start-user">Từ</label>
+                            <input type="date" id="time-start-user" class="form-control-date"
+                                onchange="">
+                        </div>
+                        <div>
+                            <label for="time-end-user">Đến</label>
+                            <input type="date" id="time-end-user" class="form-control-date"
+                    >
+                        </div>
+                    </form>
+
+                    <button class="btn-reset-user">
+                        <i class="fa-solid fa-arrow-rotate-right"></i>
+                    </button>
+
+                  <!-- <button id="btn-add-user" class="btn-control-large" onclick="">
+                        <i class="fa-solid fa-plus"></i> <span>Thêm khách hàng</span>
+                    </button>--> 
+
+                </div>
+            </div>
+
+            <div class="table-users">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Họ và tên</th>
+                            <th>Liên hệ</th>
+                            <th>Ngày tham gia</th>
+                            <th>Tình trạng</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="users-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+         <script src="assets/js/initilization.js"></script>
+         <script src="assets/js/admin.js"></script>
+    </body>
+</html>

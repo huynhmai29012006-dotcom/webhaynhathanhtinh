@@ -1,38 +1,127 @@
-.form{
-    background: #0b74d1;
-    border:2px solid black;
-    color: #fff;
-    padding: 24px;
-    max-width: 420px;
-    margin: 40px auto;
-    border-radius: 8px;
-    box-shadow: 0 6px 18px rgba(11,116,209,0.15);
-}
+  :root {
+            --primary-color: #E53935;
+            --secondary-color: #FFB300;
+            --bg-dark: #1A1A1A;
+            --bg-light: #FAFAFA;
+            --text-primary-light: #EEEEEE;
+            --text-secondary-light: #B0B0B0;
+            --accent-color: #F4511E;
+            --border-color-dark: #2C2C2C;
+            --text-dark: #333333;
+            --border-color-light: #EAEAEA;
+            --white: #FFFFFF;
+            --font-family: 'Be Vietnam Pro', sans-serif;
+        }
 
-.form label {
-    display: block;
-    margin-bottom: 6px;
-    font-weight: 600;
-}
+        /* 2. Style Cơ bản */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
 
-.form input {
+        body {
+            font-family: var(--font-family);
+            background-color: var(--bg-light); /* Nền sáng (từ bảng màu) */
+            color: var(--text-dark);
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-    width: 100%;
+        /* 3. Header Đơn giản (Chỉ logo) */
+        .auth-header {
+            padding: 1rem 2rem;
+            background-color: #FCF9E8; /* Giống màu header trang chủ của bạn */
+            border-bottom: 1px solid var(--border-color-light);
+            text-align: center;
+        }
 
-    padding: 10px 12px;
-    margin-bottom: 12px;
-    border-radius: 6px;
-    border: 1px solid rgba(255, 255, 255, 0);
-    box-sizing: border-box;
-}
+        .auth-header img {
+            width: 150px;
+            height: auto;
+        }
 
-.form button {
-    display: inline-block;
-    padding: 10px 18px;
-    border: none;
-    border-radius: 6px;
-    background: #ffb300;
-    color: #111;
-    font-weight: 700;
-    cursor: pointer;
-}
+        /* 4. Vùng chứa Form */
+        .auth-page-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1; /* Đẩy form vào giữa trang */
+            padding: 2rem;
+        }
+
+        .auth-card {
+            background: var(--white);
+            border-radius: 10px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 450px;
+            padding: 2.5rem;
+            border-top: 5px solid var(--secondary-color); /* Điểm nhấn màu cam */
+        }
+
+        .auth-card h2 {
+            text-align: center;
+            color: var(--text-dark);
+            margin-bottom: 2rem;
+            font-weight: 700;
+        }
+
+        /* 5. Form Chung */
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #555;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color-light);
+            border-radius: 5px;
+            font-size: 1rem;
+            font-family: var(--font-family);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--secondary-color);
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 0.75rem;
+            border: none;
+            border-radius: 5px;
+            background: var(--primary-color);
+            color: var(--white);
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-submit:hover {
+            opacity: 0.9;
+        }
+
+        /* 6. Chuyển đổi Đăng nhập/Đăng ký */
+        .auth-switch {
+            text-align: center;
+            margin-top: 1.5rem;
+            color: #777;
+        }
+
+        .auth-switch a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 700;
+        }

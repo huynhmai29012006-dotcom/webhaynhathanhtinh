@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Nhập hàng | Hanuri Cafe & Kitchen</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+       <h2 class="logo">K–EATERY</h2>
+        <nav class="menu">
+            <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> <span>Tổng quan</span></a>
+            <a href="products.html"><i class="fa-solid fa-bowl-rice"></i> <span>Sản phẩm</span></a>
+            <a href="orders.html"><i class="fa-solid fa-receipt"></i> <span>Đơn hàng</span></a>
+            <a href="users.html"><i class="fa-solid fa-users"></i> <span>Khách hàng</span></a>
+        
+            <a href="import.html" class="active"><i class="fa-solid fa-boxes-stacked"></i> Nhập hàng</a>
+            <a href="prices.html"><i class="fa-solid fa-hand-holding-dollar"></i> Giá bán</a>
+            <a href="tonkho.html"><i class="fa-solid fa-warehouse"></i> Tồn kho</a>
+            <a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> <span>Đăng xuất</span></a>
+        </nav>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <span class="menu-toggle"><i class="fa-solid fa-bars"></i></span>
+            <h1>Quản lý Nhập hàng</h1>
+        </div>
+
+        <div class="card">
+            <div class="admin-control">
+                <div class="admin-control-left">
+                    <select id="importStatusFilter" onchange="filterImports()">
+                        <option value="all">Tất cả trạng thái</option>
+                        <option value="draft">Nháp</option>
+                        <option value="completed">Hoàn thành</option>
+                    </select>
+                </div>
+                <div class="admin-control-center">
+                    <div class="form-search">
+                        <span class="search-btn"><i class="fa-solid fa-magnifying-glass"></i></span>
+                        <input type="text" class="form-search-input" placeholder="Tìm kiếm mã phiếu nhập, ngày..." id="form-search-import">
+                    </div>
+                </div>
+                <div class="admin-control-right">
+                    <button class="btn-reset-order" onclick="document.getElementById('form-search-import').value = ''; document.getElementById('importStatusFilter').value = 'all'; filterImports();">
+                        <i class="fa-solid fa-arrows-rotate"></i>
+                    </button>
+                    <button class="btn-control-large" onclick="showImportForm('add')">
+                        <i class="fa-solid fa-plus"></i> <span>Tạo phiếu nhập</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="table-responsive">
+                <table class="data-table" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Mã phiếu</th>
+                            <th>Ngày nhập</th>
+                            <th>Tổng giá trị</th>
+                            <th>Trạng thái</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="importsTableBody">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div id="importFormContainer" class="import-detail-container">
+            <form id="detailedImportForm">
+                <h1 id="importFormTitle">Tạo Phiếu Nhập Hàng Mới</h1>
+                <span class="close-btn" onclick="hideImportForm()">&times;</span> 
+
+                <div class="form-group">
+                    <label for="importId">Mã Phiếu Nhập:</label>
+                    <input type="text" id="importId" value="Tự động tạo" disabled>
+                </div>
+                <div class="form-group">
+                    <label for="importDate">Ngày Nhập:</label>
+                    <input type="date" id="importDate" required>
+                </div>
+
+                <h2>Danh Sách Sản Phẩm</h2>
+                <div class="table-responsive">
+                    <table class="import-product-list-table" width="100%">
+                        <thead>
+                            <tr>
+                                <th>Sản Phẩm</th>
+                                <th>Giá Nhập (VNĐ)</th>
+                                <th>Số Lượng</th>
+                                <th>Thành Tiền (VNĐ)</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody id="importProductRows">
+                            </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="3" class="text-right"><strong>Tổng Cộng:</strong></td>
+                                <td id="importGrandTotal" class="text-right">0 VNĐ</td>
+                                <td></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                
+                <button type="button" class="btn btn-add-item" onclick="addImportProductRow()">
+                    <i class="fa-solid fa-plus"></i> Thêm sản phẩm
+                </button>
+
+                <div class="form-action-buttons">
+                    <button type="submit" class="btn btn-save-draft"><i class="fa-solid fa-floppy-disk"></i> Lưu Nháp</button> 
+                    <button type="button" class="btn btn-complete-import" id="btnCompleteImport"><i class="fa-solid fa-check"></i> Hoàn Thành</button>
+                    <button type="button" class="btn btn-cancel-form" onclick="hideImportForm()"><i class="fa-solid fa-xmark"></i> Hủy</button>
+                </div>
+            </form>
+        </div>
+        </div>
+    <script src="assets/js/initilization.js"></script>
+    <script src="assets/js/admin.js"></script>
+</body>
+</html>

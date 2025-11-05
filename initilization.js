@@ -1,3 +1,4 @@
+
 function createProduct() {
     if (localStorage.getItem('products') == null) {
         let products = [{
@@ -274,35 +275,62 @@ function createProduct() {
         localStorage.setItem('products', JSON.stringify(products));
     }
 }
-// Hiện Menu
-function renderProducts(){
-    const products=JSON.parse(localStorage.getItem('products'));
+
+
+
+
+const body = document.querySelector("body");
+let modalContainer = document.querySelectorAll('.modal');
+let modalBox = document.querySelectorAll('.mdl-cnt');
+
+
+modalContainer.forEach(item => {
+    item.addEventListener('click', closeModal);
+});
+
+modalBox.forEach(item => {
+    item.addEventListener('click', function (event) {
+        event.stopPropagation();
+    })
+});
+
+function closeModal() {
+    modalContainer.forEach(item => {
+        item.classList.remove('open');
+    });
+    console.log(modalContainer)
+    body.style.overflow = "auto";
+}
+function vnd(price) {
+    return price.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+}
+
+
+
+
+
+function addToCart(productId) {
+    console.log(`Đã thêm sản phẩm ID: ${productId} vào giỏ hàng.`);
+}
+
+//Modal mua ngay, thêm sản phẩm vào giỏ hàng
+
+function renderProducts(ShowProducts){
+   
 
     const productlistcontainer= document.getElementById('product-list');
-    if(!products)
-    {
-        console.error("Not find data products or #product-list");
-        return;
-    }
-    if(!productlistcontainer)
-    {
-        console.error("not find #productlist")
-        
-    }
             // Xóa nội dung cũ
     productlistcontainer.innerHTML="";
 
-    products.forEach(products => {
+    ShowProducts.forEach(products => {
         if(products.status==1){
-            const formattedPrice = products.price.toLocaleString('vi-VN')+ 'Đ';
-
         const productHTML=`
         <div class="product-item">
-            <img src="${products.img}" alt="${products.title}"> </img>
+            <img src="${products.img}" alt="${products.title}" onclick="ShowDetailProduct(${products.id})">
             <h3 class="product-title">${products.title}</h3>
-            <p class="product-price">${formattedPrice}</p>
-            <button class="btn-order" onclick="addToCart(${products.id})">
-                <i class="fas fa-shopping-cart">ĐẶT MÓN</i> 
+            <p class="product-price">${vnd(products.price)}</p>
+            <button class="btn-order" onclick="ShowDetailProduct(${products.id})">
+                <b class="btn-primary" "><i class="fa fa-cart-shopping"> </i><span>ĐẶT MÓN</span></b> 
             </button>
         </div>` ;
         productlistcontainer.innerHTML+=productHTML;    
@@ -310,10 +338,235 @@ function renderProducts(){
     
     });
 }
-function addToCart(productId) {
-    console.log(`Đã thêm sản phẩm ID: ${productId} vào giỏ hàng.`);
+function increasingNumber(e) {
+    let qty = e.parentNode.querySelector('.input-qty');
+    if (parseInt(qty.value) < qty.max) {
+        qty.value = parseInt(qty.value) + 1;
+    } else {
+        qty.value = qty.max;
+    }
 }
-window.onload= function(){
-    createProduct();
-    renderProducts();
+function decreasingNumber(e) {
+    let qty = e.parentNode.querySelector('.input-qty');
+    if (qty.value > qty.min) {
+        qty.value = parseInt(qty.value) - 1;
+    } else {
+        qty.value = qty.min;
+    }
+}
+//Show detail product
+function ShowDetailProduct(productId){
+    let products=JSON.parse(localStorage.getItem('products')) ; 
+    let modal=document.querySelector('.modal.product-detail');
+    
+    event.preventDefault();
+    let InfoProduct= products.find(p =>{
+        return p.id=== productId;
+    })
+
+    let modalhtml=`
+        <div class="modal-header">
+            <img class="product-image" src="${InfoProduct.img}" alt="">
+        </div>
+
+    <div class="modal-body">
+        <h2 class="product-title">${InfoProduct.title}</h2>
+        <div class="product-control">
+            <div class="PriceBox">
+                <span class="current-price">${vnd(InfoProduct.price)}</span>
+            </div>
+            <div class="buttons_added">
+                <input class="minus is-form" type="button" value="-" onclick="decreasingNumber(this)">
+                <input class="input-qty" max="100" min="1" name="" type="number" value="1">
+                <input class="plus is-form" type="button" value="+" onclick="increasingNumber(this)">
+            </div>
+        </div>
+        <p class="product-description">${InfoProduct.desc}</p>
+    </div>
+
+    <div class="notebox">
+            <p class="notebox-title"> Ghi Chú</p>
+            <textarea class="text-note" id="popup-detail-note" placeholder="Nhập thông tin cần lưu ý..."></textarea>
+  
+    </div>
+    
+    <div class="modal-footer">
+        <div class="price-total">
+            <span class="thanhtien">Thành Tiền</span>
+            <span class="price">${vnd(InfoProduct.price)}</span>
+        </div>
+        <div class="modal-footer-control">
+            <button class="button-danghangngay" data-product="${InfoProduct.id}">Đặt hàng ngay</button>
+            <button class="button-dat" id="add-cart" onclick="animationCart()">
+        </div>
+    </div>`;
+    document.querySelector('#product-detail-content').innerHTML=modalhtml;
+    modal.classList.add('open');
+    body.style.overflow="hidden";
+
+    //CapNhap Thanh Tien
+    let tgbtn = document.querySelectorAll('.is-form');
+    let qty= document.querySelector('.input-qty');
+    let pricetext= document.querySelector('.price');
+    tgbtn.forEach(element =>{
+    element.addEventListener('click',() =>{
+        if(qty){
+        let price=InfoProduct.price*parseInt(qty.value);
+        pricetext.innerHTML=vnd(price);
+        }
+    });
+});
+    //add product to cart
+    let productbtn=document.querySelector('.button-dat');
+    productbtn.addEventListener('click',(e)=>{
+        if(localStorage.getItem('currentuser')){
+            addCart(InfoProduct.id);
+        }else{
+                toast({tittle:'Warning', message: ' Chưa đăng nhập tài khoản!', type:'Warning', duration:3000});
+        }
+    }
+
+)
+// datbangngay();
+}
+//Show depend on Category
+var productAll = JSON.parse(localStorage.getItem('products')).filter(item => item.status == 1);
+
+
+function ShowCategory(Type){
+      main_nav.classList.add('hide');
+      document.getElementById("trangchu").scrollIntoView();
+      let productfind = productAll.filter(p =>{
+        return p.category.toString().toUpperCase().includes(Type.toUpperCase());
+    })
+    let currentPage=1;
+    setupPagination(productfind, perPage, currentPage);
+    displayList(productfind, perPage, currentPage);
+}
+//Phan Trang Pagnation
+let perPage=9;
+let currentPage=1;
+
+function showHomeProduct(products) {
+    let productAll = products.filter(item => item.status == 1)
+       setupPagination(productAll, perPage, currentPage);
+    displayList(productAll, perPage, currentPage);
+ 
+}
+
+
+function displayList(productAll, perPage, currentPage) {
+    let start = (currentPage - 1) * perPage;//        0 9 18 27
+    let end = (currentPage - 1) * perPage + perPage;  // 9 18   
+    let productShow = productAll.slice(start, end);
+    renderProducts(productShow);
+}
+
+// Chạy code khi DOM đã tải xong
+
+function createAccount(){
+ let accounts=[{
+    username:'admin',
+    password:'123456',
+    cart:[]
+ },
+ {
+    username:'staff',   
+    password:'123456',
+    cart:[]
+},{
+    username:'user',
+    password:'123456',
+    cart:[],
+}]
+    localStorage.setItem('accounts', JSON.stringify(accounts))
 };
+//hàm kiểm tra Current user và thay đổi hiển thị tên người dùng trên thanh điều hướng
+function checkCurrentUser() {
+    const currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    const userDisplay = document.getElementById('auth-card-username');
+
+    if (currentUser && userDisplay) {
+        userDisplay.innerHTML = `Xin chào, ${currentUser.username}`;
+    }
+}
+
+window.onload = function(){
+    createProduct();
+    const products = JSON.parse(localStorage.getItem('products'));
+    if (products) {
+        showHomeProduct(products); 
+    } else {
+        console.error("Lỗi: Không tìm thấy dữ liệu sản phẩm để hiển thị.");
+    }
+    createAccount();
+    checkCurrentUser();
+};
+function setupPagination(productAll, perPage, currentPage) {
+    const pageNavList = document.querySelector('.page-nav-list'); 
+    if (!pageNavList) return;
+    document.querySelector('.page-nav-list').innerHTML = '';
+    let page_count = Math.ceil(productAll.length / perPage);
+    for (let i = 1; i <= page_count; i++) {
+        let li = paginationChange(i, productAll, currentPage);
+        document.querySelector('.page-nav-list').appendChild(li);
+    }
+}
+
+function paginationChange(page, productAll, currentPage) {
+    let node = document.createElement(`li`);
+    node.classList.add('page-nav-item');
+    node.innerHTML = `<a href="javascript:;">${page}</a>`;
+    if (currentPage == page) node.classList.add('active');
+    node.addEventListener('click', function () {
+    
+        currentPage = page;
+
+        displayList(productAll, perPage, currentPage);  
+
+        let t = document.querySelectorAll('.page-nav-item.active');
+        for (let i = 0; i < t.length; i++) {
+            t[i].classList.remove('active');
+        }
+
+        node.classList.add('active');
+        document.getElementById("trangchu").scrollIntoView();
+    })
+    return node;
+}
+
+
+//back to top bottom
+const BackTop= document.getElementById('backtotoplink');
+if(BackTop){
+    BackTop.addEventListener('click',(e)=>{
+        e.preventDefault();
+
+        window.scrollTo({
+            top:0,
+            left:0,
+            behavior:'smooth'
+        })
+    });
+}
+
+function protect(){
+    event.preventDefault();
+}
+
+//Chuc nang dang ky
+let singupButton= document.getElementById('signup-button');
+let loginButton= document.getElementById('login-button');
+
+//Che Nav voi scroll
+const main_nav=document.getElementById('main-nav');
+let lastScrollY=window.scrollY;
+
+window.addEventListener("scroll",()=>{
+    if (lastScrollY<window.scrollY)
+    {main_nav.classList.add('hide');}
+    else
+    {main_nav.classList.remove('hide');}
+    lastScrollY=window.scrollY;
+});
+

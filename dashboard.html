@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8">
+    <title>Dashboard | K–EATERY</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body>
+    <aside class="sidebar">
+      <h2 class="logo">K–EATERY</h2>
+      <nav class="menu">
+        <a href="dashboard.html" class="active"><i class="fa-solid fa-chart-line"></i> <span>Tổng quan</span></a>
+        <a href="products.html"><i class="fa-solid fa-bowl-rice"></i> <span>Sản phẩm</span></a>
+        <a href="orders.html"><i class="fa-solid fa-receipt"></i> <span>Đơn hàng</span></a>
+        <a href="users.html"><i class="fa-solid fa-users"></i> <span>Khách hàng</span></a>
+        <a href="import.html"><i class="fa-solid fa-boxes-stacked"></i> <span>Nhập hàng</span></a>
+      <!--  <a href="stats.html"><i class="fa-solid fa-chart-pie"></i> <span>Thống kê</span></a>-->
+        <a href="prices.html"><i class="fa-solid fa-hand-holding-dollar"></i> <span>Giá bán</span></a>
+         <a href="tonkho.html" class="active"><i class="fa-solid fa-warehouse"></i> Tồn kho</a>
+        <a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> <span>Đăng xuất</span></a>
+      </nav>
+    </aside>
+
+    <div class="main-content">
+      <div class="header">
+        <span class="menu-toggle"><i class="fa-solid fa-bars"></i></span>
+        <h1 class="header-title">K–EATERY</h1>
+        <p class="title-header">Xin chào, <strong>Admin</strong></p>
+      </div>
+
+      <div class="welcome-banner">
+        <h2>Chào mừng, Admin!</h2>
+      </div>
+
+      <div class="dashboard-section">
+        <h3>Tổng quan hoạt động hôm nay</h3>
+        <p class="section-description">Số liệu trộm hòm dòng bối thiển dộng đó ano khĩnh tô ghi thiệu</p>
+      </div>
+
+      <div class="dashboard-grid">
+
+        <div class="card card-revenue">
+          <i class="fa-solid fa-sack-dollar card-icon"></i>
+          <div class="card-content">
+            <h3>Doanh thu hôm nay</h3>
+            <p class="main-value"><strong>3.500.000 đ</strong></p>
+            <p class="sub-info positive">Tăng 15% so với hôm qua</p>
+          </div>
+        </div>
+
+        <div class="card card-orders">
+          <i class="fa-solid fa-receipt card-icon"></i>
+          <div class="card-content">
+            <h3>Đơn hàng mới</h3>
+            <p class="main-value"><strong>12 đơn</strong></p>
+            <p class="sub-info">2 đơn đã được tiếp nhận trong 30 phút qua.</p>
+          </div>
+        </div>
+
+        <div class="card card-best-sellers">
+          <h3>Món bán chạy</h3>
+          <ul class="best-sellers-list">
+            <li>
+              <span>Mì cay cấp 7</span>
+              <span class="item-stats">
+                <span class="stat-value primary">x25</span>
+                <span class="stat-value secondary">45</span>
+              </span>
+            </li>
+            <li>
+              <span>Tokbokki phô mai</span>
+              <span class="item-stats">
+                <span class="stat-value primary">x18</span>
+                <span class="stat-value secondary">15</span>
+              </span>
+            </li>
+            <li>
+              <span>Trà sữa matcha</span>
+              <span class="item-stats">
+                <span class="stat-value primary">x15</span>
+                <span class="stat-value secondary">12</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card card-users">
+          <i class="fa-solid fa-users card-icon"></i>
+          <div class="card-content">
+            <h3>Khách hàng</h3>
+            <p class="main-value">Tổng số khách hàng</p>
+            <p class="main-value-large"><strong>1.250</strong></p>
+            <p class="sub-info">5 khách hàng mới trong tuần này</p>
+          </div>
+        </div>
+
+        <div class="card card-inventory-alert">
+          <h3>Cảnh báo tồn kho</h3>
+          <ul class="inventory-list">
+            <li>
+              <span>Mì gói Shin Ramyun</span>
+              <span class="badge danger">Chỉ còn 10</span>
+            </li>
+            <li>
+              <span>Kimchi cải thảo</span>
+              <span class="badge warning">Sắp hết</span>
+            </li>
+            <li>
+              <span>Sắp hết</span>
+              <span class="badge info"><i class="fa-solid fa-angle-down"></i></span>
+            </li>
+          </ul>
+        </div>
+
+        <div class="card card-notifications">
+          <h3>Thông báo</h3>
+          <ul class="notification-list">
+            <li>Gọi gói phún gírtólkth 088-00:20. thốn ngóngthờ thổ thân</li>
+            <li>Xem tất cả thông báo <i class="fa-solid fa-arrow-right"></i></li>
+          </ul>
+        </div>
+        </div>
+        <script src="assets/js/initilization.js"></script>
+      <script src="assets/js/admin.js"></script>
+  </body>
+</html>

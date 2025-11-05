@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Quản lý Giá Bán | K–EATERY</title>
+    <link rel="stylesheet" href="assets/css/admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="sidebar">
+   <h2 class="logo">K–EATERY</h2>
+      <nav class="menu">
+        <a href="dashboard.html"><i class="fa-solid fa-chart-line"></i> <span>Tổng quan</span></a>
+        <a href="products.html"><i class="fa-solid fa-bowl-rice"></i> <span>Sản phẩm</span></a>
+        <a href="orders.html"><i class="fa-solid fa-receipt"></i> <span>Đơn hàng</span></a>
+        <a href="users.html"><i class="fa-solid fa-users"></i> <span>Khách hàng</span></a>
+       
+        <a href="import.html"><i class="fa-solid fa-boxes-stacked"></i> Nhập hàng</a>
+        <a href="prices.html" class="active"><i class="fa-solid fa-hand-holding-dollar"></i> Giá bán</a>
+         <a href="tonkho.html"><i class="fa-solid fa-warehouse"></i> Tồn kho</a>
+        <a href="login.html"><i class="fa-solid fa-right-from-bracket"></i> <span>Đăng xuất</span></a>
+    </div>
+
+    <div class="main-content">
+        <div class="header">
+            <span class="menu-toggle"><i class="fa-solid fa-bars"></i></span>
+            <h1>Quản lý Giá Bán</h1>
+        </div>
+
+        <div class="price-config-grid">
+            
+            <div class="card">
+                <div class="section-title-with-button">
+                    <h3>Cấu hình Tỉ lệ Lợi nhuận (%)</h3>
+                    <button class="btn btn-primary btn-sm" onclick="saveAllProfitMarginsByType()">Lưu Tất cả</button>
+                </div>
+
+                <h4>Theo Loại Sản Phẩm</h4>
+                <table class="price-table" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Loại</th>
+                            <th>Lợi nhuận (%)</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="profit-by-type-body">
+                        <tr>
+                            <td>Mì kimchi</td>
+                            <td><input type="number" value="35" min="0" max="100" class="profit-margin-input" data-type-key="mi-kimchi">%</td>
+                            <td><button class="btn btn-secondary btn-sm" onclick="saveProfitMarginByType(this)">Lưu</button></td>
+                        </tr>
+                        <tr>
+                            <td>Mì lẩu thái</td>
+                            <td><input type="number" value="35" min="0" max="100" class="profit-margin-input" data-type-key="mi-lau-thai">%</td>
+                            <td><button class="btn btn-secondary btn-sm" onclick="saveProfitMarginByType(this)">Lưu</button></td>
+                        </tr>
+                        <tr>
+                            <td>Trộn</td>
+                            <td><input type="number" value="45" min="0" max="100" class="profit-margin-input" data-type-key="tron">%</td>
+                            <td><button class="btn btn-secondary btn-sm" onclick="saveProfitMarginByType(this)">Lưu</button></td>
+                        </tr>
+                        <tr>
+                            <td>Snack</td>
+                            <td><input type="number" value="45" min="0" max="100" class="profit-margin-input" data-type-key="snack">%</td>
+                            <td><button class="btn btn-secondary btn-sm" onclick="saveProfitMarginByType(this)">Lưu</button></td>
+                        </tr>
+                        <tr>
+                            <td>Nước</td>
+                            <td><input type="number" value="60" min="0" max="100" class="profit-margin-input" data-type-key="nuoc">%</td>
+                            <td><button class="btn btn-secondary btn-sm" onclick="saveProfitMarginByType(this)">Lưu</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h4 style="margin-top: 30px;">Theo Sản Phẩm Cụ thể</h4>
+                <div class="admin-control" style="gap: 5px;">
+                    <input type="text" class="form-search-input" id="product-search-profit" placeholder="Tìm kiếm món ăn..." oninput="filterProductsByProfit()">
+                </div>
+                <table class="price-table" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Tên món</th>
+                            <th>Lợi nhuận (%)</th>
+                            <th>Thao tác</th>
+                        </tr>
+                    </thead>
+                    <tbody id="profit-by-product-body">
+                        </tbody>
+                </table>
+            </div>
+
+            <div class="card">
+                <div class="section-title-with-button">
+                    <h3>Tra Cứu Giá Bán Hiện Tại</h3>
+                </div>
+                
+                <div class="admin-control" style="gap: 5px; margin-bottom: 20px;">
+                    <input type="text" class="form-search-input" id="lookup-search-input" placeholder="Tìm kiếm món ăn..." oninput="renderPriceLookup()">
+                </div>
+
+                <table class="price-table" width="100%">
+                    <thead>
+                        <tr>
+                            <th>Tên món</th>
+                            <th>Giá vốn</th>
+                            <th>% Lời</th>
+                            <th>Giá bán</th>
+                        </tr>
+                    </thead>
+                    <tbody id="price-lookup-body">
+                        </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+     <script src="assets/js/initilization.js"></script>
+     <script src="assets/js/admin.js"></script>
+</body>
+</html>
